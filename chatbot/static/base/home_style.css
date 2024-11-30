@@ -1,0 +1,129 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family:  Google Sans,Helvetica Neue,sans-serif;
+    overflow: hidden;
+}
+.left_bar{
+    position: relative;
+    background-color: #2c2b2b;
+    flex-basis: 20%;
+    padding-top: 100px;
+    padding-left: 50px;
+    color: #fff;
+    height: 100%;
+    overscroll-behavior: content;
+}
+.menu{
+    position: absolute;
+    top:20px;
+    left:20px;
+    font-size: larger;
+    cursor: pointer;
+
+}
+.right_bar{
+    flex-basis: 80%;
+    position: relative;
+    background-color: #222;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    overscroll-behavior: content;
+}
+.cont{
+    display: flex;
+    height: 100vh;
+}
+/* .conv{
+    overflow:scroll;
+
+} */
+.add_icon{
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+}
+.new_tab{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 150px;
+    border-radius: 100px;
+    background-color: #2c2b2b;
+    cursor: pointer;
+}
+
+.new_tab:hover{
+    background-color: #4681f4;
+}
+.history{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    justify-content: center;
+
+}
+.conv .msg{
+    line-height: 30px;
+}
+.item1{
+    overflow-y:auto;
+    scroll-behavior: smooth;
+    margin-bottom: 60px;
+}
+
+.name{
+    position: absolute;
+    top:30px;
+    left: 30px;
+}
+.hello{
+    position: absolute;
+    top:70%;
+    left: 45%;
+}
+.prompt{
+    position: sticky;
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    padding:20px 20px;
+    border-radius: 100px;
+    background-color: #2c2b2b;
+    color: #fff;
+
+}
+.prompt input{
+    flex-basis:90% ;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.prompt input::placeholder{
+    color: #fff;
+    font-size: 16px;
+}
+.prompt_parent{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 80%;
+}
+
+
+.chatbot{
+    display: flex;
+    gap: 15px;
+}
+.chatbot img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}

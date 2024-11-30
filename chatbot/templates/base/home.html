@@ -1,0 +1,93 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Omega ChatBot Home Page</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/home_style.css'%}">
+    <script src="https://kit.fontawesome.com/9e92d4a30c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="cont">
+        <div class="left_bar">
+            <i class="menu fa-solid fa-bars"></i>
+            <form method="post">
+                {%csrf_token%}
+                <button class="new_tab" type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                    <p class="new_tab_text">New tab</p>
+                </button>
+            </form>
+            <p>Recent</p>
+            <div class="history">
+                <i class="fa-regular fa-message"></i>
+                <p>how to change element css style in javascript</p>
+                <i class="fa-solid fa-trash"></i>
+            </div>
+
+        </div>
+        <div class="right_bar">
+            {% if user.is_authenticated%}
+                <p class="name">{{user.extra_data}}</p>
+            {% else%}
+            <p class="name">Omega</p>
+            {%endif%}
+            <!-- <p class="hello">Hello, Haile</p> -->
+             <div class="item1">
+                        <div class="conv">
+                            {%for item in msg%}
+                            <div class="chatbot">
+                                <img src="$">
+                                <p class="msg">{{item.msg}}</p>
+                            </div>
+                            {%endfor%}
+                        </div>
+                </div>
+                <div class="prompt_parent">
+                    <div class="prompt">
+                        <input type="text" placeholder="Ask Omega" id="prompt">
+                        <i class="fa-regular fa-image"></i>
+                        <i class="fa-solid fa-microphone"></i>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+<script>
+    const url = 'ws://' + window.location.host + '/ws/home/conv/';
+    const socket = new WebSocket(url)
+    document.addEventListener('keydown',function(event){
+        if (event.key == 'Enter'){
+            const prompt = document.getElementById("prompt");
+            data = JSON.stringify({'q':prompt.value})
+            prompt.value = "";
+            socket.send(data)
+        }
+    });
+    socket.onmessage = function(e){
+        let data = JSON.parse(e.data);
+        const conv = document.getElementsByClassName("conv")[0];
+        let chat = document.getElementsByClassName('chatbot')[0];
+        if (! chat){
+            chat = document.createElement("div");
+            chat.className = 'chatbot';
+            chat.appendChild(document.createElement('img'))
+            let p = document.createElement("p");
+            p.className = "msg";
+            p.textContent = data['a'];
+            chat.appendChild(p);
+            conv.appendChild(chat)
+        }
+        else{
+            var chatClone = chat.cloneNode(true);
+            var msg = chatClone.querySelector('.msg');
+            msg.textContent = data['a'];
+            conv.appendChild(chatClone);
+        }
+    }
+
+</script>
+</body>
+</html>
+

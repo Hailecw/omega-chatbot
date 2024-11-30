@@ -1,0 +1,72 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Omega Sign Up Page</title>
+    <link rel="stylesheet" href="{%static 'user_auth/signup_style.css'%}">
+</head>
+<body>
+    <form method="post" class="cont">
+        {%csrf_token%}
+        <img src="{% static 'images/omega.png'%}" alt="omega icon" class="logo">   
+        <h4 class="title">Sign Up</h4> 
+        <button class="google_btn">
+            <img src="{%static 'images/google_icon.png'%}" alt="google logo">
+            <p>Sign Up With Google</p>
+        </button>
+        <div class="line">
+            <p class="line1"></p>
+            <p>or</p>
+            <p class="line2"></p>
+        </div>
+        <div class="username_input">
+            <!-- <label for="username">Username</label> -->
+            <input type="text" placeholder="username" name="username">
+            {% if form.username.errors%}
+                    {% for error in form.username.errors%}
+                        <small>{{error}}</small>
+                    {%endfor%}
+            {%else%}
+                    <small></small>
+            {%endif%}
+        </div>
+        <div class="email_input">
+            <!-- <label for="Email">Email</label> -->
+            <input type="email" placeholder="email" name="email">
+            {% if form.email.errors%}
+                {% for error in form.email.errors%}
+                        <small>{{error}}</small>
+                {%endfor%}
+            {%else%}
+                <small></small>
+            {%endif%}
+        </div>
+        <div class="password_input">
+            <!-- <label for="password">Passord</label> -->
+            <input type="password" placeholder="password" name="password">
+            {% if form.password.errors%}
+            {% for error in form.password.errors%}
+                <small>{{error}}</small>
+            {%endfor%}
+            {%else%}
+            <small></small>
+            {%endif%}
+        </div>
+        <div class="confirm_password">
+            <!-- <label for="password2">Confirm Password</label> -->
+            <input type="password" placeholder="confirm password" name="password2">
+            {% if form.password2.errors%}
+            {% for error in form.password2.errors%}
+                <small>{{error}}</small>
+            {%endfor%}
+            {%else%}
+            <small></small>
+            {%endif%}
+        </div>
+        <button class="signup_btn" type="submit">Sign Up</button>
+        <p>Already have account? <a href="{%url 'login'%}" class="aha_link">sign in</a></p>
+    </form>   
+</body>
+</html>

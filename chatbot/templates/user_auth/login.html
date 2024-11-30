@@ -1,0 +1,56 @@
+{%load socialaccount%}
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>ChatBot Login Page</title>
+    <link rel="stylesheet" href="{%static 'user_auth/login_style.css' %}">
+</head>
+<body>
+    <form method="post" class="cont">
+        {%csrf_token%}
+        <img src="{%static 'images/omega.png'%}" alt="omega icon" class="omega_icon">
+        <h4 class="title">Log in to Omega</h4>
+        <a href="{% provider_login_url 'google' %}" class="google-link">
+            <button class="google_btn">
+                <img src="{%static 'images/google_icon.png'%}" alt="google logo">
+                <p>Continue with Google</p>
+            </button>
+        </a>
+        <div class="line">
+            <p class="line1"></p>
+            <p>or</p>
+            <p class="line2"></p>
+        </div>
+        <div class="username_cont">
+            <label for="username">UserName</label>
+            <input type="text" placeholder="username" name="username">
+            <small class="error">
+                {% for error in form.username.errors%}
+                <ul>
+                    <li>{{error}}</li>
+                </ul>
+                {%endfor%}
+            </small>
+        </div>
+        <div class="password_cont">
+            <label for="password">Password</label>
+            <input type="password" placeholder="password" name="password">
+            <small class="error">
+                {% for error in form.password.errors%}
+                <ul>
+                    <li>{{error}}</li>
+                </ul>
+                {%endfor%}
+            </small>
+        </div>
+        <button class="login_btn" type="submit">Login</button>
+        <div>
+            <p style="text-align: center;">forgot your passord?</p>
+            <p>New to Omega? <a href="{% url 'register'%}" class="ca_link">Create account</a></p>
+        </div>
+    </form>
+</body>
+</html>
