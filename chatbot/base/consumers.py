@@ -15,6 +15,8 @@ class AsyncChatbotConsumer(AsyncWebsocketConsumer):
         u = await sync_to_async(MessagesModel.objects.create)(sender=user,msg=data['q'])
         tabs = await sync_to_async(TabModel.objects.filter)(user=user)
         last = await sync_to_async(tabs.last)()
+        last.title = data['q']
+        await sync_to_async(last.save)()
         await sync_to_async(last.chats.add)(u)
         await sync_to_async(genai.configure)(api_key="AIzaSyBgHfH0Euc6hsfFzDl7Ara6ukS2z1Fl5jI")
         model = await sync_to_async(genai.GenerativeModel)("gemini-1.5-flash")

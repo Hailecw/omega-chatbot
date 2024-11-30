@@ -9,11 +9,12 @@ def HomePage(request):
     if request.method == 'POST':
         print("insie post")
         TabModel.objects.create(user=request.user)
-    current = TabModel.objects.filter(user=request.user).last()
+    history = TabModel.objects.filter(user=request.user)
+    current = history.last()
     if not current:
         current = TabModel.objects.create(user=request.user)
     msg = current.chats.all()
-    return render(request,"base/home.html",{'msg':msg})
+    return render(request,"base/home.html",{'msg':msg,'history':history[::-1]})
 
 
 

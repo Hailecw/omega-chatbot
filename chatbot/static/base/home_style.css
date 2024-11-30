@@ -55,10 +55,15 @@ body{
     border-radius: 100px;
     background-color: #2c2b2b;
     cursor: pointer;
+
 }
 
 .new_tab:hover{
     background-color: #4681f4;
+}
+form{
+    color: #fff;
+    border: 0;
 }
 .history{
     display: flex;

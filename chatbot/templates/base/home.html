@@ -20,11 +20,13 @@
                 </button>
             </form>
             <p>Recent</p>
-            <div class="history">
-                <i class="fa-regular fa-message"></i>
-                <p>how to change element css style in javascript</p>
-                <i class="fa-solid fa-trash"></i>
-            </div>
+            {% for item in history%}
+                <div class="history">
+                    <i class="fa-regular fa-message"></i>
+                    <p>{{item.title}}</p>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+            {%endfor%}
 
         </div>
         <div class="right_bar">
@@ -57,18 +59,35 @@
 <script>
     const url = 'ws://' + window.location.host + '/ws/home/conv/';
     const socket = new WebSocket(url)
+    const conv = document.getElementsByClassName("conv")[0];
+    let chat = document.getElementsByClassName('chatbot')[0];
     document.addEventListener('keydown',function(event){
         if (event.key == 'Enter'){
             const prompt = document.getElementById("prompt");
-            data = JSON.stringify({'q':prompt.value})
+            var val = prompt.value
+            data = JSON.stringify({'q':val})
             prompt.value = "";
             socket.send(data)
+            if (! chat){
+            chat = document.createElement("div");
+            chat.className = 'chatbot';
+            chat.appendChild(document.createElement('img'))
+            let p = document.createElement("p");
+            p.className = "msg";
+            p.textContent = val;
+            chat.appendChild(p);
+            conv.appendChild(chat)
+            }
+            else{
+                var chatClone = chat.cloneNode(true);
+                var msg = chatClone.querySelector('.msg');
+                msg.textContent = val;
+                conv.appendChild(chatClone);
+            }
         }
     });
     socket.onmessage = function(e){
         let data = JSON.parse(e.data);
-        const conv = document.getElementsByClassName("conv")[0];
-        let chat = document.getElementsByClassName('chatbot')[0];
         if (! chat){
             chat = document.createElement("div");
             chat.className = 'chatbot';
