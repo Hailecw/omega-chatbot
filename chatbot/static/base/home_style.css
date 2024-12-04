@@ -7,23 +7,45 @@ body{
 .left_bar{
     position: relative;
     background-color: #2c2b2b;
-    flex-basis: 20%;
+    flex-basis: 25%;
     padding-top: 100px;
     padding-left: 50px;
     color: #fff;
-    height: 100%;
+    overflow-y: scroll;
     overscroll-behavior: content;
+    transition: 0.1s ease-in-out;
 }
 .menu{
-    position: absolute;
+    position:absolute;
     top:20px;
     left:20px;
     font-size: larger;
     cursor: pointer;
+    z-index: 100;
+    color: #fff;
+}
 
+.recent{
+    margin-bottom: 30px;
+}
+.history{
+    display: flex;
+    align-items:center;
+    position: relative;
+    gap:10px;
+    max-width: 300px;
+    height: 60px;
+    justify-content: flex-start;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.history:hover{
+    border-radius: 100px;
+    background-color: #504a4a;
 }
 .right_bar{
-    flex-basis: 80%;
+    flex-basis: 100%;
     position: relative;
     background-color: #222;
     color: #fff;
@@ -53,25 +75,20 @@ body{
     justify-content: space-around;
     width: 150px;
     border-radius: 100px;
-    background-color: #2c2b2b;
+    background-color: #504a4a;
     cursor: pointer;
+    border: 0;
 
 }
 
 .new_tab:hover{
     background-color: #4681f4;
 }
-form{
+.new_tab_form{
     color: #fff;
     border: 0;
 }
-.history{
-    display: flex;
-    align-items: center;
-    gap:10px;
-    justify-content: center;
 
-}
 .conv .msg{
     line-height: 30px;
 }
@@ -79,6 +96,7 @@ form{
     overflow-y:auto;
     scroll-behavior: smooth;
     margin-bottom: 60px;
+    width: 100%;
 }
 
 .name{
@@ -86,11 +104,7 @@ form{
     top:30px;
     left: 30px;
 }
-.hello{
-    position: absolute;
-    top:70%;
-    left: 45%;
-}
+
 .prompt{
     position: sticky;
     display: flex;
@@ -126,9 +140,50 @@ form{
 .chatbot{
     display: flex;
     gap: 15px;
+    margin-bottom: 20px;
 }
 .chatbot img{
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
+}
+#tab-detail{
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.history span:hover{
+    cursor: pointer;
+}
+.history span:hover::after{
+    content: "delete tab";
+    font-size: 12px;
+    padding: 5px;
+    background-color: #ebe2e2;
+    color: #423c3c;
+    position: absolute;
+    top: -15px;
+    right: 0;
+    margin-left: 15px;
+}
+.logout_btn{
+    border: 0;
+    color: black;
+    background-color: #4681f4;
+    padding: 10px;
+    position: absolute;
+    top:15px;
+    right: 15px;
+}
+.logout_btn:hover{
+    cursor: pointer;
+}
+#scheck{
+    display: none;
+}
+#scheck:checked ~ .left_bar{
+    flex-basis: 0%;
+    overflow-y: hidden;
 }

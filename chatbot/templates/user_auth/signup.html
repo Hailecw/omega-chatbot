@@ -1,3 +1,4 @@
+{%load socialaccount%}
 {%load static%}
 <!DOCTYPE html>
 <html>
@@ -8,19 +9,22 @@
     <link rel="stylesheet" href="{%static 'user_auth/signup_style.css'%}">
 </head>
 <body>
-    <form method="post" class="cont">
+    <div class="cont">
         {%csrf_token%}
         <img src="{% static 'images/omega.png'%}" alt="omega icon" class="logo">   
         <h4 class="title">Sign Up</h4> 
+        <a href="{% provider_login_url 'google' %}?next={% url 'home' %}" class="google-link">
         <button class="google_btn">
             <img src="{%static 'images/google_icon.png'%}" alt="google logo">
             <p>Sign Up With Google</p>
         </button>
+        </a>
         <div class="line">
             <p class="line1"></p>
             <p>or</p>
             <p class="line2"></p>
         </div>
+        <form method="post" class="form">
         <div class="username_input">
             <!-- <label for="username">Username</label> -->
             <input type="text" placeholder="username" name="username">
@@ -66,7 +70,8 @@
             {%endif%}
         </div>
         <button class="signup_btn" type="submit">Sign Up</button>
+        </form>
         <p>Already have account? <a href="{%url 'login'%}" class="aha_link">sign in</a></p>
-    </form>   
+    </div>   
 </body>
 </html>

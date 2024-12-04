@@ -64,6 +64,7 @@
 }
 input{
     padding: 10px;
+
 }
 .omega_icon{
     width:3rem;
@@ -90,9 +91,14 @@ input{
     width: 45%;
     border-bottom: 1px solid #49444496;
 }
+.form{
+    align-self: stretch;
+
+}
 @media only screen and (max-width:600px){
     .cont{
         width: 300px;
+
     }
 }
 

@@ -10,4 +10,7 @@ class TabModel(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     title = models.CharField('tab title',max_length=100,null=True)
     chats = models.ManyToManyField(MessagesModel)
-    
+    def delete(self,*args,**kwargs):
+        for chat in self.chats.all():
+            chat.delete()
+        return super().delete(*args,**kwargs)

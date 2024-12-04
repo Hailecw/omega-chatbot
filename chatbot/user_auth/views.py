@@ -11,7 +11,8 @@ class LoginPage(LoginView):
     form_class = AuthenticationForm
     template_name = 'user_auth/login.html'
     redirect_authenticated_user = True
-    success_url = reverse_lazy('home')
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 class RegisterPage(FormView):
     template_name = 'user_auth/signup.html'

@@ -10,11 +10,8 @@
 </head>
 <body>
     <div class="cont">
-        <input type="checkbox" id="scheck">
-        <label for="scheck" class="menu">
-        <i class="fa-solid fa-bars"></i>
-        </label>
         <div class="left_bar">
+            <i class="menu fa-solid fa-bars"></i>
                 <button class="new_tab">
                     <i class="fa-solid fa-plus"></i>
                     <p class="new_tab_text">New tab</p>
@@ -23,15 +20,15 @@
             {% for item in history%}
                 {%if item.title != None %}
                     <div class="history">
-                        <a href="{% url 'tab-detail' item.id %}" id="tab-detail">
+                    <a href="{% url 'tab-detail' item.id %}" id="tab-detail">
                         <i class="fa-regular fa-message"></i>
                         <p class="htitle">{{item.title}}</p>
-                        </a>
+                    </a>
                         <span onclick="deleteTab(event,'{{item.id}}')"><i class="fa-solid fa-trash"></i></span>
                     </div>
-                
+               
                 {%else%}
-                    <div class="history" style="display: none;">
+                    <div class="history" style="display:none">
                         <i class="fa-regular fa-message"></i>
                         <p class="htitle"></p>
                         <span onclick="deleteTab(event,'{{item.id}}')"><i class="fa-solid fa-trash"></i></span>
@@ -55,10 +52,10 @@
                         <div class="conv">
                             {%for item in msg%}
                                 <div class="chatbot">
-                                    {%if item.sender.username != 'omega' %}
-                                        <img src="{%static 'images/user.png' %}">
+                                    {%if item.sender.username == 'omega' %}
+                                    <img src="{%static 'images/chatgpt.jpeg' %}">
                                     {%else%}
-                                        <img src="{%static 'images/chatgpt.jpeg' %}">
+                                    <img src="{%static 'images/user.png' %}">
                                     {%endif%}
                                     <span class="msg">{{item.msg|safe}}</span>
                                 </div>

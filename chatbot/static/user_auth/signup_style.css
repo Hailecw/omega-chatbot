@@ -29,6 +29,12 @@
     height: 1.5rem;
     border-radius: 50%;
 }
+.google-link{
+    text-decoration: none;
+    width: 100%;
+    outline: none;
+    border: 0;
+}
 .google_btn p{
     color: #4681f4;
 }
@@ -78,7 +84,9 @@ input:hover{
     text-decoration: none;
     color:#4681f4
 }
-
+.form{
+    align-self: stretch;
+}
 @media only screen and (max-width:600px){
     .cont{
         width: 300px;
